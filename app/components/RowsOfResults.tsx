@@ -2,10 +2,16 @@ import {Difficulty, Exercise} from '../utils/utils';
 import {Text} from 'react-native';
 import React from 'react';
 import {styles} from '../styles/styles';
+import Mediumtext from './Mediumtext';
 
-const RowsOfResults = ({exercises}: {exercises: Array<Exercise>}) => {
+type RORProps = {
+  title?: string;
+  exercises: Array<Exercise>;
+};
+const RowsOfResults = ({title, exercises}: RORProps) => {
   return (
     <>
+      <Mediumtext>{title}</Mediumtext>
       {!!exercises &&
         Object.values(Difficulty).map(diff => (
           <Text key={diff + 'res'} style={styles.smalltext}>

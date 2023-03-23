@@ -1,16 +1,23 @@
-import {Text, View} from 'react-native';
+import {BackHandler, Button, Text, View} from 'react-native';
 import {styles} from '../styles/styles';
-import React from 'react';
+import React, {PropsWithChildren} from 'react';
 
 type NoShowProps = {
   isLoading: boolean;
   errormessage?: String;
 };
-const NoShowScreen = ({isLoading, errormessage}: NoShowProps) => (
+const NoShowScreen = ({
+  isLoading,
+  errormessage,
+  children,
+}: NoShowProps & PropsWithChildren) => (
   <View style={styles.centered}>
-    {isLoading && <Text style={styles.buttontext}>Loadan</Text>}
-    {errormessage && <Text style={styles.buttontext}>{errormessage}</Text>}
-    {!isLoading && !errormessage && <Text style={styles.buttontext}>Tomt</Text>}
+    {isLoading && <Text style={styles.bigtext}>Loading...</Text>}
+    {errormessage && <Text style={styles.smalltext}>{errormessage}</Text>}
+    {!isLoading && !errormessage && (
+      <Text style={styles.mediumtext}>{children}</Text>
+    )}
+    <Button title={'Exit'} onPress={BackHandler.exitApp} />
   </View>
 );
 

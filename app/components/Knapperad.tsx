@@ -1,14 +1,13 @@
 import {Difficulty} from '../utils/utils';
-import {Pressable, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import React from 'react';
 import {styles} from '../styles/styles';
+import Knapp from './Knapp';
 
 const Knapperad = ({onPress}: {onPress: (d: Difficulty) => void}) => {
   const knapper = Object.values(Difficulty).map(d => (
     <View key={d} style={{flex: 1}}>
-      <Pressable style={styles.button} onPress={() => onPress(d)}>
-        <Text style={styles.buttontext}>{d}</Text>
-      </Pressable>
+      <Knapp title={d} onPress={() => onPress(d)}></Knapp>
     </View>
   ));
 

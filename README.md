@@ -32,7 +32,7 @@ Denne komponenten ba jeg ChatGPT om å skrive et utkast til. Så byttet jeg ut t
 
 ### ExerciseScreen
 
-Her er all logikken nå. Bør absolutt splittes opp! Også her ba jeg ChatGPT lage et utkast til meg som jeg så bygde videre på.
+Også her ba jeg ChatGPT lage et utkast til meg som jeg så bygde videre på. Fikk faktisk splittet den opp i mindre biter også.
 
 ## Må sette opp Firebase
 

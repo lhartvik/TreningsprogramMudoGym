@@ -14,25 +14,39 @@ const ExerciseScreen = () => {
     fetcher,
   );
   const [exercises, setExercises] = useState<Array<Exercise>>([]);
+  const [finishedExercises, setFinishedExercises] = useState<Array<Exercise>>(
+    [],
+  );
   useEffect(() => {
     setExercises(data?.map(mapToExercise) ?? []);
+    setFinishedExercises([]);
   }, [data]);
 
   const goToNext = () => setChosen((chosen + 1) % exercises.length);
   const reportAndNext = (d: Difficulty) => {
-    exercises[chosen].results.push(d);
-    exercises[chosen].timestamps.push(new Date());
+    const exercise = exercises[chosen];
+    exercise.results = [...exercise.results, d];
+    exercise.timestamps = [...exercise.timestamps, new Date()];
+    if (exercise.results.length >= 3) {
+      setExercises(exercises.filter(e => e !== exercise));
+      setFinishedExercises([...finishedExercises, exercise]);
+    }
     goToNext();
   };
 
   if (isLoading || error || !exercises || exercises.length === 0) {
-    return <NoShowScreen isLoading={isLoading} errormessage={error?.message} />;
+    return (
+      <NoShowScreen isLoading={isLoading} errormessage={error?.message}>
+        {exercises.length === 0 ? 'Ferdig' : ''}
+      </NoShowScreen>
+    );
   }
   return (
     <>
       <ShowExercise exercise={exercises[chosen]} handlePress={goToNext} />
       <Knapperad onPress={reportAndNext} />
-      <RowsOfResults exercises={exercises} />
+      <RowsOfResults title={'In progress'} exercises={exercises} />
+      <RowsOfResults title={'Finished'} exercises={finishedExercises} />
     </>
   );
 };
