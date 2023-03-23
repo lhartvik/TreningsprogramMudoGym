@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text: {
+  buttontext: {
     fontSize: 24,
     fontWeight: 'bold',
     paddingBottom: 20,
@@ -20,7 +20,7 @@ const StartingScreen = ({navigation}: any) => {
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Velkommen til treningsappen!</Text>
+      <Text style={styles.buttontext}>Velkommen til treningsappen!</Text>
       <Button title={'Start'} onPress={handleStart} />
     </View>
   );
