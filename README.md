@@ -20,6 +20,25 @@ Hvis alt går bra og appen kjører, trykk r for å resette appen.
 ## Rotkomponenten
 App.tsx er hvor alt starter. Derfra kan man klikke seg videre til underkomponentene.
 
+## Må sette opp Firebase
+For å bruke appen må man sette opp en Realtime Database i [Firebase](https://firebase.google.com/)
+Da får man laste ned en fil med navn `google-services.json`. Denne legges i folderen android/app/
+Det er her alle tilkoblingsdataene står oppført.
+Her er noen eksempeldata man kan legge inn: 
+```
+[
+      { id: 0, name: "Lat pulldown", weight: 90 },
+      { id: 1, name: "Chest press", weight: 70 },
+      { id: 2, name: "Seated row", weight: 50 },
+      { id: 3, name: "Abdominal", weight: 120 },
+      { id: 4, name: "Prone leg curl", weight: 60 },
+      { id: 5, name: "Leg extension", weight: 80 },
+      { id: 6, name: "Leg press", weight: 215 }
+    ]
+```
+
+
+
 ## Feil jeg har opplevd
 ### Rettigheter til Gradlew
 Hvis android/gradlew ikke har executable-rettighet:
@@ -58,3 +77,11 @@ Står det unauthorized? Da kan man gjøre følgende:
 * Koble til telefonen
 * Du skal få en popup med spørsmål om denne mac-adressen kan få debugge på telefonen, klikk tillat
 * Hvis du skriver adb devices nå står det "device" der det før stod "unauthorized"
+
+### Manglende google-services.json
+```
+> File google-services.json is missing. The Google Services Plugin cannot function without it.
+   Searched Location:
+```
+Skaff en slik fil ved å lage en konto og opprette en Realtime database på Firebase.
+Legg den i android/app.
