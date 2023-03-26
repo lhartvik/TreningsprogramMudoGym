@@ -1,0 +1,46 @@
+{
+  "exercises": [
+    {
+      "id": 0,
+      "name": "Lat pulldown",
+      "reps": 12,
+      "weight": 90
+    },
+    {
+      "id": 1,
+      "name": "Chest press",
+      "reps": 12,
+      "weight": 70
+    },
+    {
+      "id": 2,
+      "name": "Seated row",
+      "reps": 12,
+      "weight": 50
+    },
+    {
+      "id": 3,
+      "name": "Abdominal",
+      "reps": 12,
+      "weight": 120
+    },
+    {
+      "id": 4,
+      "name": "Prone leg curl",
+      "reps": 12,
+      "weight": 60
+    },
+    {
+      "id": 5,
+      "name": "Leg extension",
+      "reps": 12,
+      "weight": 80
+    },
+    {
+      "id": 6,
+      "name": "Leg press",
+      "reps": 12,
+      "weight": 215
+    }
+  ]
+}
