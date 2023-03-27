@@ -17,7 +17,9 @@ const RowsOfResults = ({title, exercises}: RORProps) => {
           <Text key={diff + 'res'} style={styles.smalltext}>
             {exercises
               .map(e =>
-                e.results ? e.results.filter(d => d === diff).length : 0,
+                e.results
+                  ? e.results.filter(d => d.difficulty === diff).length
+                  : 0,
               )
               .reduce((s: string, n) => s + ' ' + n, '')}
           </Text>

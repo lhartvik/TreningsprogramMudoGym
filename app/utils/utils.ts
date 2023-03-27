@@ -9,8 +9,12 @@ export type Exercise = {
   reps: number;
   name: string;
   weight: number;
-  results: Array<Difficulty>;
-  timestamps: Array<Date>;
+  results: Array<Result>;
+};
+
+export type Result = {
+  difficulty: Difficulty;
+  timestamp: string;
 };
 
 export function mapToExercise(d: any): Exercise {
@@ -20,6 +24,5 @@ export function mapToExercise(d: any): Exercise {
     reps: d.reps,
     weight: d.weight,
     results: [],
-    timestamps: [],
   };
 }

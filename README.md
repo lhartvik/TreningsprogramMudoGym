@@ -83,7 +83,7 @@ Står det unauthorized? Da kan man gjøre følgende:
 
 - Koble fra telefonen
 - gå inn på developer options på telefonen og huke bort USB Debugging.
-- Revoke USB Debugging authorizations
+- Revoke USB Debugging authorizations(kanskje unødvendig og fører kanskje til at man må gjøre dette pånytt hver gang man bytter hvilken PC man koblet mobilen til)
 - På PCen, `adb kill-server` og så `adb start-server`
 - Huke av for USB debugging igjen på telefonen
 - Koble til telefonen
@@ -99,3 +99,4 @@ Står det unauthorized? Da kan man gjøre følgende:
 
 Skaff en slik fil ved å lage en konto og opprette en Realtime database på Firebase.
 Legg den i android/app.
+

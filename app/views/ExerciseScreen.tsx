@@ -1,52 +1,62 @@
 import React, {useEffect, useState} from 'react';
 import useSWR from 'swr';
-import fetcher from '../db/firebase';
 import {Difficulty, Exercise, mapToExercise} from '../utils/utils';
 import Knapperad from '../components/Knapperad';
 import RowsOfResults from '../components/RowsOfResults';
 import ShowExercise from '../components/ShowExercise';
-import NoShowScreen from '../components/NoShowScreen';
+import database from '@react-native-firebase/database';
+import LoadingModal from '../modals/LoadingModal';
+import ErrorModal from '../modals/ErrorModal';
+import {Button} from 'react-native';
 
-const ExerciseScreen = () => {
-  const [chosen, setChosen] = useState(0);
+const ExerciseScreen = ({navigation}: any) => {
   const {data, error, isLoading} = useSWR<Array<Exercise>>(
     '/exercises',
-    fetcher,
-  );
-  const [exercises, setExercises] = useState<Array<Exercise>>([]);
-  const [finishedExercises, setFinishedExercises] = useState<Array<Exercise>>(
-    [],
+    async (url: string) =>
+      database()
+        .ref(url)
+        .once('value')
+        .then((value: any) => value.val()),
   );
   useEffect(() => {
     setExercises(data?.map(mapToExercise) ?? []);
-    setFinishedExercises([]);
   }, [data]);
 
-  const goToNext = () => setChosen((chosen + 1) % exercises.length);
+  const [chosen, setChosen] = useState(0);
+  const [exercises, setExercises] = useState<Array<Exercise>>([]);
+  const exercise = exercises[chosen];
+  const finishedExercises = exercises.filter(e => e.results.length >= 3);
+  const isFinished =
+    finishedExercises.length > 0 &&
+    finishedExercises.length === exercises.length;
+
+  const handleUploadResults = () =>
+    navigation.navigate('Results', {finishedExercises});
+
   const reportAndNext = (d: Difficulty) => {
-    const exercise = exercises[chosen];
-    exercise.results = [...exercise.results, d];
-    exercise.timestamps = [...exercise.timestamps, new Date()];
-    if (exercise.results.length >= 3) {
-      setExercises(exercises.filter(e => e !== exercise));
-      setFinishedExercises([...finishedExercises, exercise]);
-    }
+    exercise.results = [
+      ...exercise.results,
+      {difficulty: d, timestamp: new Date().toISOString()},
+    ];
     goToNext();
   };
 
-  if (isLoading || error || !exercises || exercises.length === 0) {
-    return (
-      <NoShowScreen isLoading={isLoading} errormessage={error?.message}>
-        {exercises.length === 0 ? 'Ferdig' : ''}
-      </NoShowScreen>
-    );
-  }
+  const goToNext = () => {
+    setChosen((chosen + 1) % exercises.length);
+  };
+
   return (
     <>
+      <ErrorModal error={error} text={'Feil ved henting av øvelser'} />
+      <LoadingModal isLoading={isLoading} />
       <ShowExercise exercise={exercises[chosen]} handlePress={goToNext} />
-      <Knapperad onPress={reportAndNext} />
+      <Knapperad disabled={isFinished} onPress={reportAndNext} />
       <RowsOfResults title={'In progress'} exercises={exercises} />
-      <RowsOfResults title={'Finished'} exercises={finishedExercises} />
+      <Button
+        disabled={!isFinished || isLoading || error}
+        title={'Last opp resultatene'}
+        onPress={handleUploadResults}
+      />
     </>
   );
 };

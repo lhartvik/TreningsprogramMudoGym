@@ -11,6 +11,16 @@ export const styles = StyleSheet.create({
     backgroundColor: 'black',
     margin: 3,
   },
+  disabledbutton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 20,
+    elevation: 3,
+    backgroundColor: 'gray',
+    margin: 3,
+  },
   buttontext: {
     fontSize: 16,
     lineHeight: 21,
@@ -33,6 +43,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#322222',
+    backgroundColor: '#AAA',
   },
 });

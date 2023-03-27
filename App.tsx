@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import StartingScreen from './app/views/StartingScreen';
 import ExerciseScreen from './app/views/ExerciseScreen';
+import ResultsScreen from './app/views/ResultsScreen';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ const App = () => {
         initialRouteName={'Home'}>
         <Stack.Screen name={'Home'} component={StartingScreen} />
         <Stack.Screen name={'Exercise'} component={ExerciseScreen} />
+        <Stack.Screen name={'Results'} component={ResultsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

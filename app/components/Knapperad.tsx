@@ -4,10 +4,15 @@ import React from 'react';
 import {styles} from '../styles/styles';
 import Knapp from './Knapp';
 
-const Knapperad = ({onPress}: {onPress: (d: Difficulty) => void}) => {
+type KnapperadProps = {
+  onPress: Function;
+  disabled: boolean;
+};
+
+const Knapperad = ({onPress, disabled}: KnapperadProps) => {
   const knapper = Object.values(Difficulty).map(d => (
     <View key={d} style={{flex: 1}}>
-      <Knapp title={d} onPress={() => onPress(d)}></Knapp>
+      <Knapp disabled={disabled} title={d} onPress={() => onPress(d)}></Knapp>
     </View>
   ));
 
