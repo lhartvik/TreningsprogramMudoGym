@@ -15,13 +15,12 @@ import LoadingModal from '../modals/LoadingModal';
 
 const ResultsScreen = ({
   route: {
-    params: {finishedExercises},
+    params: {exercises},
   },
 }: any) => {
   const {error, isLoading} = useSWR('results', key =>
-    database().ref(key).push(finishedExercises),
+    database().ref(key).push(exercises),
   );
-
   const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {

@@ -1,8 +1,8 @@
-import {Difficulty} from '../utils/utils';
 import {Text, View} from 'react-native';
 import React from 'react';
 import {styles} from '../styles/styles';
 import Knapp from './Knapp';
+import {Difficulty} from '../model';
 
 type KnapperadProps = {
   onPress: Function;

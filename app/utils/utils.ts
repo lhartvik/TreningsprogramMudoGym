@@ -1,21 +1,4 @@
-export enum Difficulty {
-  LETT = 'Lett',
-  MIDDELS = 'Passe',
-  TUNGT = 'Tungt',
-}
-
-export type Exercise = {
-  id: number;
-  reps: number;
-  name: string;
-  weight: number;
-  results: Array<Result>;
-};
-
-export type Result = {
-  difficulty: Difficulty;
-  timestamp: string;
-};
+import {Exercise} from '../model';
 
 export function mapToExercise(d: any): Exercise {
   return {
@@ -24,5 +7,6 @@ export function mapToExercise(d: any): Exercise {
     reps: d.reps,
     weight: d.weight,
     results: [],
+    finished: false,
   };
 }
