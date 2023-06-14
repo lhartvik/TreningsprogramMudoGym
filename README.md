@@ -36,11 +36,13 @@ Også her ba jeg ChatGPT lage et utkast til meg som jeg så bygde videre på. Fi
 
 ## Må sette opp Firebase
 
-For å bruke appen må man sette opp en Realtime Database i [Firebase](https://firebase.google.com/)
+For å bruke appen må man sette opp en Realtime Database i [Firebase](https://firebase.google.com/) og lage et nytt prosjekt med en realtime database.
+Gå inn på Project settings og Connect to app, package: "no.hartvigsen.lars.treningsprogrammudogym" 
+( du kan også opprette din egen app og kopiere inn tsx-filene og package.json )
 Da får man laste ned en fil med navn `google-services.json`. Denne legges i folderen android/app/
 Det er her alle tilkoblingsdataene står oppført.
 Her er noen eksempeldata man kan evt redigere og legge inn: [eksempeldata.json](./app/db/eksempeldata.json)
-Det er en egen knapp for å importere json 
+Det er en egen knapp for å importere json - man åpner Realtime database og klikker på de tre prikkene øverst til høyre. 
 
 ## Feil jeg har opplevd
 
