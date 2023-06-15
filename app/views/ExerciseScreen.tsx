@@ -72,7 +72,6 @@ const ExerciseScreen = ({navigation}: any) => {
 
   return (
     <>
-      <ErrorModal error={error} text={'Feil ved henting av øvelser'} />
       <LoadingModal isLoading={isLoading} />
       <ShowExercise
         exercise={exercises[chosen]}

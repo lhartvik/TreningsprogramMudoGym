@@ -2,7 +2,7 @@ import Bigtext from './Bigtext';
 import Mediumtext from './Mediumtext';
 import {View} from 'react-native';
 import Knapp from './Knapp';
-import {Exercise} from '../model';
+import {defaultExercise, Exercise} from '../model';
 
 type ShowExerciseProps = {
   exercise: Exercise | null;
@@ -12,18 +12,23 @@ type ShowExerciseProps = {
 };
 
 const ShowExercise = ({
-  exercise,
+  exercise = defaultExercise,
   handlePress,
   handleCancel,
   disabled,
 }: ShowExerciseProps) => {
+  const handleIncrease = () => {};
+
   return (
     <View style={{flex: 0.5, alignItems: 'center', justifyContent: 'center'}}>
       <Mediumtext>Øvelse:</Mediumtext>
       <Bigtext>{exercise?.name ?? 'Løpe'}</Bigtext>
-      <Mediumtext>
-        {exercise ? `${exercise?.reps}stk, ${exercise?.weight} lb` : 'løpe'}
-      </Mediumtext>
+      <View>
+        <Mediumtext>
+          {`${exercise?.reps}stk, ${exercise?.weight} lb`}
+        </Mediumtext>
+        <Knapp title={'+'} onPress={handleIncrease} disabled={disabled} />
+      </View>
       <View style={{justifyContent: 'flex-end', paddingBottom: 40}}>
         <Knapp disabled={disabled} title={'Hopp over'} onPress={handlePress} />
         <Knapp disabled={disabled} title={'Avbryt'} onPress={handleCancel} />

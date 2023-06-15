@@ -13,6 +13,15 @@ export type Exercise = {
   finished: boolean;
 };
 
+export const defaultExercise: Exercise = {
+  finished: false,
+  id: 0,
+  name: 'løpe',
+  reps: 1,
+  results: [],
+  weight: 0,
+};
+
 export type Result = {
   difficulty: Difficulty;
   timestamp: string;
